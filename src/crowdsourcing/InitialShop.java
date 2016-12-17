@@ -24,7 +24,7 @@ public class InitialShop {
     private ArrayList<Shop> shopList;
 
     public InitialShop() throws MalformedURLException, IOException {
-        fileScanner = new BufferedReader(new FileReader("C:\\Users\\vasilhs12\\Desktop\\file.csv"));
+        fileScanner = new BufferedReader(new FileReader("C:\\Users\\vasilhs12\\Desktop\\Εργασίες\\Εργασία JAVA1\\file.csv"));
         shopList = new ArrayList<Shop>();
     }
     public ArrayList<Shop> TakeLines() throws IOException {
