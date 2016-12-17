@@ -12,112 +12,139 @@ package crowdsourcing;
 public class Shop {
     
     private String city;
+    private int reviewCount;
+    private int rating;
     private String name;
     private String fullAdress;
     private String type;
+    private String categories0;
+    private String categories1;
+    private int workingDays;
     private String workingHour;
-    private String workingDays;
-    private int reviewCount;
-    private int rating;
     private int maxReservations;
 
-    public Shop(String city, String name, String fullAdress, String type, String workingHour, String workingDays, int reviewCount, int rating, int maxReservations) {
+    public Shop(String city, int reviewCount, int rating, String name, String fullAdress, String type, String categories0, String categories1, int workingDays, String workingHour, int maxReservations) {
         this.city = city;
+        this.reviewCount = reviewCount;
+        this.rating = rating;
         this.name = name;
         this.fullAdress = fullAdress;
         this.type = type;
-        this.workingHour = workingHour;
+        this.categories0 = categories0;
+        this.categories1 = categories1;
         this.workingDays = workingDays;
-        this.reviewCount = reviewCount;
-        this.rating = rating;
+        this.workingHour = workingHour;
         this.maxReservations = maxReservations;
     }
-    
+
     public Shop() {
         this.city = " ";
+        this.reviewCount = 0;
+        this.rating = 0;
         this.name = " ";
         this.fullAdress = " ";
         this.type = " ";
+        this.categories0 = " ";
+        this.categories1 = " ";
+        this.workingDays = 0;
         this.workingHour = " ";
-        this.workingDays = " ";
-        this.reviewCount = 0;
-        this.rating = 0;
         this.maxReservations = 0;
-    }
-
-    public String getCity() {
-        return city;
     }
 
     public void setCity(String city) {
         this.city = city;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getFullAdress() {
-        return fullAdress;
-    }
-
-    public void setFullAdress(String fullAdress) {
-        this.fullAdress = fullAdress;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getWorkingHour() {
-        return workingHour;
-    }
-
-    public void setWorkingHour(String workingHour) {
-        this.workingHour = workingHour;
-    }
-
-    public String getWorkingDays() {
-        return workingDays;
-    }
-
-    public void setWorkingDays(String workingDays) {
-        this.workingDays = workingDays;
-    }
-
-    public int getReviewCount() {
-        return reviewCount;
-    }
-
     public void setReviewCount(int reviewCount) {
         this.reviewCount = reviewCount;
-    }
-
-    public int getRating() {
-        return rating;
     }
 
     public void setRating(int rating) {
         this.rating = rating;
     }
 
-    public int getMaxReservations() {
-        return maxReservations;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setFullAdress(String fullAdress) {
+        this.fullAdress = fullAdress;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setCategories0(String categories0) {
+        this.categories0 = categories0;
+    }
+
+    public void setCategories1(String categories1) {
+        this.categories1 = categories1;
+    }
+
+    public void setWorkingDays(int workingDays) {
+        this.workingDays = workingDays;
+    }
+
+    public void setWorkingHour(String workingHour) {
+        this.workingHour = workingHour;
     }
 
     public void setMaxReservations(int maxReservations) {
         this.maxReservations = maxReservations;
     }
+
+    public String getCity() {
+        return city;
+    }
+
+    public int getReviewCount() {
+        return reviewCount;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getFullAdress() {
+        return fullAdress;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getCategories0() {
+        return categories0;
+    }
+
+    public String getCategories1() {
+        return categories1;
+    }
+
+    public int getWorkingDays() {
+        return workingDays;
+    }
+
+    public String getWorkingHour() {
+        return workingHour;
+    }
+
+    public int getMaxReservations() {
+        return maxReservations;
+    }
+
+    @Override
+    public String toString() {
+        return "Shop{" + "The name of city is : " + city + ", the review count is : " + reviewCount + ", the rating is : " + rating + ", the name is :" + name + ", the full Adress is : " + fullAdress + ", the type is : " + type + ", the categories0 is :" + categories0 + ", the categories1 is : " + categories1 + ", the working Days is : " + workingDays + ", the working Hour is : " + workingHour + ", and the max Reservations is : " + maxReservations + '}';
+    }
     
     
-    
+
     
 }
