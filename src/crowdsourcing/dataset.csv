@@ -1,0 +1,25 @@
+city,review_count,rating,name,full_address,type,categories/0,categories/1,Working days,working hours,max_reservations
+Fountain Hills,17,4,Saddle Bronc Grill,"11056 N Saguaro Blvd Fountain Hills, AZ 85268",business,Bars,American (New),2,9:00-17:00,15
+Fountain Hills,3,2,Burger King,"13725 N Fountain Hills Blvd Fountain Hills, AZ 85268",business,Burgers,Fast Food,2,17:00-21:00,12
+Fountain Hills,3,4,Fountain Hills Theater,"11445 N Saguaro Blvd Fountain Hills, AZ 85268",business,Arts & Entertainment,Performing Arts,4,20:00-24:00,14
+Fountain Hills,5,4,Discount Tire,"16745 E Shea Blvd Fountain Hills, AZ 85268",business,Tires,Automotive,7,17:00-21:00,20
+Gilbert,8,2,Salon Lola,"3479 E Baseline Rd Ste 18 Gilbert, AZ 85234",business,Hair Salons,Beauty & Spas,3,9:00-17:00,7
+Gilbert,82,5,Phoenicia Grill,"1150 S Gilbert Rd Gilbert, AZ 85296",business,Buffets,Mediterranean,3,9:00-17:00,18
+Gilbert,9,1,Maid To Order Cleaning,"426 N Granite St Gilbert, AZ 85234",business,Home Cleaning,Window Washing,5,9:00-17:00,12
+Gilbert,97,1,Nando's Mexican Cafe,"3519 E Baseline Rd Gilbert, AZ 85234",business,Mexican,Restaurants,3,9:00-17:00,18
+Paradise Valley,3,0,AF Hair Design,"7293 N Scottsale Rd Paradise Valley, AZ 85253",business,Hair Salons,Hair Stylists,1,9:00-17:00,6
+Paradise Valley,3,0,AF Hair Design,"7293 N Scottsale Rd Paradise Valley, AZ 85253",business,Hair Salons,Hair Stylists,1,9:00-17:00,6
+Paradise Valley,3,0,Last Drop Bar,"Hermosa Inn-Lon's at the Hermosa 5532 N Palo Cristi Rd Paradise Valley, AZ 85253",business,Bars,Nightlife,7,9:00-17:00,20
+Paradise Valley,3,3,Two Plates Full,"6166 N Scottsdale Road Suite 402 Paradise Valley, AZ 85253",business,Shopping,Home Decor,4,9:00-17:00,9
+Peoria,108,0,Greek Wraps,"7369 W Bell Rd Peoria, AZ 85382",business,Greek,Mediterranean,7,17:00-21:00,9
+Peoria,12,0,AZ YO CO Frozen Yogurt,"8215 W Bell Rd Ste 124 Peoria, AZ 85382",business,Food,Ice Cream & Frozen Yogurt,2,17:00-21:00,10
+Peoria,13,3,Ayala's AZ Kitchen Mexican Cafe,"8427 W Peoria Ave Peoria, AZ 85345",business,Mexican,Restaurants,5,17:00-21:00,13
+Peoria,18,1,Blu Agave Arizona Kitchen,"28615 N El Mirage Rd Peoria, AZ 85383",business,Mexican,Tex-Mex,6,17:00-21:00,17
+Phoenix,4,1,Scorpion Barber Shop,"3221 E Thomas Rd Ste B Phoenix, AZ 85018",business,Barbers,Beauty & Spas,6,17:00-21:00,20
+Phoenix,4,1,Scott's Motor Werks,"10657 N Cave Creek Rd Phoenix, AZ 85020",business,Auto Repair,Automotive,5,17:00-21:00,14
+Phoenix,4,1,Secret Garden Event Center,"2501 E Baseline Rd Phoenix, AZ 85042",business,Venues & Event Spaces,Wedding Planning,7,17:00-21:00,5
+Phoenix,4,2,Sharko's Catering,"4522 N 26th Dr Phoenix, AZ 85017",business,Event Planning & Services,Caterers,7,17:00-21:00,17
+Phoenix,4,5,Sir Veza's Taco Garage,"3400 E Sky Harbor Blvd Terminal 4 Phoenix, AZ 85034",business,Mexican,Restaurants,4,20:00-24:00,18
+Queen Creek,15,5,Paradise Bakery,"21202 S Ellsworth Lp Rd Ste 100 Queen Creek, AZ 85242",business,Bakeries,Food,2,20:00-24:00,17
+Queen Creek,5,4,Accents Hair Salon,"40975 North Ironwood Rd Unit B109 Queen Creek, AZ 85140",business,Hair Salons,Beauty & Spas,6,20:00-24:00,6
+Queen Creek,5,5,The Golf Club At Johnson Ranch,"30761 N Golf Club Dr Queen Creek, AZ 85243",business,Active Life,Golf,5,20:00-24:00,11

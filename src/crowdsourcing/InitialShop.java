@@ -19,15 +19,15 @@ public class InitialShop {
     
     private final BufferedReader fileScanner; // creates a file
     private Shop shop;
-    private ArrayList<Shop> shopList;
+    private final ArrayList<Shop> shopList;
 
     public InitialShop() throws MalformedURLException, IOException {
-        fileScanner = new BufferedReader(new FileReader("C:\\Users\\vasilhs12\\Desktop\\Εργασίες\\Εργασία JAVA1\\dataset.csv"));
-        shopList = new ArrayList<Shop>();
+        fileScanner = new BufferedReader(new FileReader("src/crowdsourcing/dataset.csv"));
+        shopList = new ArrayList<>();
     }
     public ArrayList<Shop> TakeLines() throws IOException {
         String line;
-        String[] splitLines = null;
+        String[] splitLines;
         
         int j = 0;
         while((line = fileScanner.readLine()) != null ){
