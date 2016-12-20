@@ -14,11 +14,8 @@ import java.io.InputStreamReader;
  * @author vasilhs12
  */
 public class Services {
-    
-    static final int STRING = 1;
-    static final int INTEGER = 0;
-    
-    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    private final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     
     private Shop shop = new Shop();
 
@@ -36,22 +33,35 @@ public class Services {
     
     
     
-    public void Reservation () {
-       System.out.println("Give us the day of your reservation") ;
+    public void Reservation () throws IOException {
+        String input = null;
+        
 //       read by the user on the day he would like to make the reservation
+        
+        do {
+            System.out.println("\nGive us the day of your reservation") ;
+            input = br.readLine();
+        }while ( !checkForValidDay( input ) );
        
 //       end read
 
 //       print the working hours nad the max reservations
-       System.out.println("The working hours is : " + this.shop.getWorkingHour() + "\nThe  max reservation is"+ this.shop.getMaxReservations());
+       System.out.println("\nThe working hours is : " + this.shop.getWorkingHour() + "\nThe  max reservation is"+ this.shop.getMaxReservations());
 //       if there is availability
-       System.out.println("Give us your first/last name") ;
 //       read by the user FIRST AND LAST NAME
-       
+        do {
+            System.out.println("\nGive us your first and last name") ;
+            input = br.readLine();
+        }while ( checkForValidName( input ) );
 //       end read
-       System.out.println("Give us your phone number") ;
+        
 //       read by the user phone number
-       
+       String phoneNumber;
+        do {
+            System.out.println("\nGive us your phone number ( XXX-XXX-XXXX )") ;
+            phoneNumber = br.readLine();
+            
+        }while ( !checkForValidPhoneNumber(phoneNumber) );
 //       end read
        
 //       change the values maxReservation for this specific day
@@ -60,29 +70,101 @@ public class Services {
     }
     
     public void Review () throws IOException {
-       System.out.println("Give us your first and last name") ;
-       
 //       read by the user FIRST AND LAST NAME
-       
+        String input = null;
+        do {
+            System.out.println("\nGive us your first and last name") ;
+            input = br.readLine();
+        }while (checkForValidName(input));
 //       end read
        
-       System.out.println("Give us your review");
-       
 //       read by the user for the Review of this shop
+        
+        int review;
+        do {
+            System.out.println("\nGive us your review");
+            input = br.readLine();
+            review = checkForValidReview(input);
+        }while ( ( review < 0 ) || ( review > 5 ) );
+       
        
 //       end read
     
 //       inform the review count and the rating
-       this.shop.setReviewCount(this.shop.getReviewCount() +1);
+       int lastReviewCount = this.shop.getReviewCount();
+       int lastRating = this.shop.getRating();
+       int lastReviewSum = lastRating * lastReviewCount;
+       int newReviewSum = lastReviewSum + review;
+       int newReviewCount = lastReviewCount + 1;
+       int newRating = newReviewSum / newReviewCount;
+       
+       System.out.println("last rating  " + lastRating +" and count " + lastReviewCount);
+       System.out.println("new rating  " + newRating +" and count " + newReviewCount);
 //       this.shop.setRating( Integer.parseInt(review));
     }
     
-    public int checkForValidInput(Object obj) {
-        if ( obj instanceof Integer ) {
-            return INTEGER;
-         }
-        else {
-            return STRING;
+    public boolean checkForValidName( String name ) {
+        
+        if ( name.matches( "^[A-Za-z, ]++$" ) ) {
+            return false;
         }
+        else {
+            return true;
+        }
+        
+    }
+    
+    public int checkForValidReview( String review ) {
+       int check = 0;
+
+        try {       
+            check = Integer.parseInt(review);
+        } catch (NumberFormatException e) {
+            check = -1;
+        }
+        
+        return check;
+    }
+    
+    public boolean checkForValidPhoneNumber( String phone) {
+        
+        if ( phone.matches("\\d{3}-\\d{3}-\\d{4}") ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public boolean checkForValidDay ( String day) {
+        boolean returnState = false;
+        switch ( day ) {
+            case "Monday":
+                returnState = true;
+                break;
+            case "Tuesday":
+                returnState = true;
+                break;
+            case "Wednesday":
+                returnState = true;
+                break;
+            case "Thursday":
+                returnState = true;
+                break;
+            case "Friday":
+                returnState = true;
+                break;
+            case "Saturday":
+                returnState = true;
+                break;
+            case "Sunday":
+                returnState = true;
+                break;
+            default:
+                returnState = false;
+                break;
+        }
+        
+        return returnState;
     }
 }

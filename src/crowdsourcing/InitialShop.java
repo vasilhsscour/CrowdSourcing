@@ -6,12 +6,10 @@
 package crowdsourcing;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -24,7 +22,7 @@ public class InitialShop {
     private ArrayList<Shop> shopList;
 
     public InitialShop() throws MalformedURLException, IOException {
-        fileScanner = new BufferedReader(new FileReader("C:\\Users\\vasilhs12\\Desktop\\Εργασίες\\Εργασία JAVA1\\file.csv"));
+        fileScanner = new BufferedReader(new FileReader("C:\\Users\\vasilhs12\\Desktop\\Εργασίες\\Εργασία JAVA1\\dataset.csv"));
         shopList = new ArrayList<Shop>();
     }
     public ArrayList<Shop> TakeLines() throws IOException {
