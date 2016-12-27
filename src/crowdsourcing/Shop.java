@@ -138,10 +138,10 @@ public class Shop {
     public int getMaxReservations() {
         return maxReservations;
     }
-
+    
     @Override
     public String toString() {
-        return "Shop{" + "The name of city is : " + city + ", the review count is : " + reviewCount + ", the rating is : " + rating + ", the name is :" + name + ", the full Adress is : " + fullAdress + ", the type is : " + type + ", the categories0 is :" + categories0 + ", the categories1 is : " + categories1 + ", the working Days is : " + workingDays + ", the working Hour is : " + workingHour + ", and the max Reservations is : " + maxReservations + '}';
+        return  city + " \t " + reviewCount + " \t " + rating + " \t " + name + " \t " + fullAdress + " \t " + type + " \t " + categories0 + " \t " + categories1 + "\t " + workingDays + "\t " + workingHour + "\t " + maxReservations;
     }
     
     

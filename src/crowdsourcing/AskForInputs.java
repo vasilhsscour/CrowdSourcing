@@ -14,7 +14,7 @@ public interface AskForInputs {
     void askForCity();
     void askForCategory();
     void askForShop();
-    void askForResOrRev();
+    String askForResOrRev();
     void askForName();
     void askForReview();
     void askForDay();

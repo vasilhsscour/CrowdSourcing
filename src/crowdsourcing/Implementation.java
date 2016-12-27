@@ -19,34 +19,53 @@ import java.util.logging.Logger;
  */
 public class Implementation implements AskForInputs, CheckForValidInputs {
 
-    private final ArrayList<Shop> shopList;
     private final BufferedReader br;
+    private final ArrayList<Shop> shopList;
     private final Set<String> cityList;
-    private final ArrayList<Shop> shopsByCategory = new ArrayList<>();
-    private String city = null;
-    private String category = null;
-    private int numOfShop = 0;
-    private int review = -1;
+    private final ArrayList<Shop> shopsByCategory;
+    private final Customer customer;
+    private String city ;
+    private String category ;
+    private int numOfShop ;
+    private int review;
 
     public Implementation( ArrayList<Shop> shopList) {
+        br = new BufferedReader(new InputStreamReader(System.in));
         this.shopList = shopList;
         this.cityList = new HashSet<>();
-        br = new BufferedReader(new InputStreamReader(System.in));
+        this.shopsByCategory = new ArrayList<>();
+        this.city = null;
+        this.category = null;
+        this.numOfShop = 0;
+        this.review = -1;
+        this.customer = new Customer();
     }
     
-    public void initCityList () {
+    private void initCityList () {
         for ( int turns=0;turns<this.shopList.size();turns++ ) {
             this.cityList.add(this.shopList.get(turns).getCity());
         }
         
-        for (String c : cityList) {
+        for (String c : cityList) { 
             System.out.println(c);
         }
     }
     
+    public void modifyShop () {
+        for (int i=0;i<shopList.size();i++) {
+            if (shopList.get(i).getCity().equals(customer.getShop().getCity())) {
+                shopList.get(i).setMaxReservations(customer.getShop().getMaxReservations());
+                shopList.get(i).setReviewCount(customer.getShop().getReviewCount());
+                shopList.get(i).setRating(customer.getShop().getRating());
+            }
+        }
+    }   
+    
 //    ask and check for city input
     @Override
     public void askForCity() {
+        this.initCityList();
+        
         String city = null;
         do {
             try {
@@ -177,7 +196,7 @@ public class Implementation implements AskForInputs, CheckForValidInputs {
     
 //    ask and check for reservetion or review input      
     @Override
-    public void askForResOrRev() {
+    public String askForResOrRev() {
         String resOrRev = null;
         do {
             System.out.println("\n\nYou would like to make a reservation or a review? (Press Reservation or Review !)");
@@ -191,22 +210,8 @@ public class Implementation implements AskForInputs, CheckForValidInputs {
         } while ( checkForRevOrRes( resOrRev ) );        
         
         Shop shop =  this.shopsByCategory.get( this.numOfShop - 1 );
-        
-        if ( resOrRev.equals( "Reservation" ) ) {
-            this.askForDay();
-            System.out.println("\nThe working hours is : " + shop.getWorkingHour() + "\nThe  max reservation is"+ shop.getMaxReservations());
-            this.askForName();
-            this.askForNumber();
-            
-            System.out.println("last max reservation  " + shop.getMaxReservations());
-            shop.setMaxReservations(shop.getMaxReservations() -1);
-            System.out.println("new max reservation  " + shop.getMaxReservations());
-        }
-        else {
-            this.askForName();
-            this.askForReview();
-            informRev( shop );
-        }
+        this.customer.setShop( shop );
+        return resOrRev;
     }
 
     @Override
@@ -230,9 +235,11 @@ public class Implementation implements AskForInputs, CheckForValidInputs {
        
        System.out.println("last rating  " + lastRating +" and count " + lastReviewCount);
        System.out.println("new rating  " + newRating +" and count " + newReviewCount);
+       shop.setRating(newRating);
+       shop.setReviewCount(newReviewCount);
+       this.customer.setShop(shop);
     }
 //    end for reservetion or review input      
-    
     
     
     
@@ -248,6 +255,7 @@ public class Implementation implements AskForInputs, CheckForValidInputs {
                 Logger.getLogger(Implementation.class.getName()).log(Level.SEVERE, null, ex);
             }
         }while ( checkForName( input ));
+        this.customer.setFirstLastName(input);
     }
 
     @Override
@@ -276,6 +284,7 @@ public class Implementation implements AskForInputs, CheckForValidInputs {
             review = checkForReview( input );
         }while ( ( review < 0 ) || ( review > 5 ) );
         this.review = review;
+        this.customer.setReview(review);
     }
 
     @Override
@@ -311,35 +320,25 @@ public class Implementation implements AskForInputs, CheckForValidInputs {
 
     @Override
     public boolean checkForDay( String day ) {
-        boolean returnState = false;
+        boolean returnState ;
         switch ( day ) {
             case "Monday":
-                returnState = true;
-                break;
+                return true;
             case "Tuesday":
-                returnState = true;
-                break;
+                return true;
             case "Wednesday":
-                returnState = true;
-                break;
+                return true;
             case "Thursday":
-                returnState = true;
-                break;
+                return true;
             case "Friday":
-                returnState = true;
-                break;
+                return true;
             case "Saturday":
-                returnState = true;
-                break;
+                return true;
             case "Sunday":
-                returnState = true;
-                break;
+                return true;
             default:
-                returnState = false;
-                break;
+                return false;
         }
-        
-        return returnState;
     }
 //    end for the day of reservation input          
     
@@ -356,6 +355,7 @@ public class Implementation implements AskForInputs, CheckForValidInputs {
             }
             
         }while ( !checkForNumber( phoneNumber ) );
+        this.customer.setPhoneNumber(phoneNumber);
     }
 
     @Override
@@ -368,4 +368,44 @@ public class Implementation implements AskForInputs, CheckForValidInputs {
         }
     }
 //    end for phone number input      
+
+    public Customer getCustomer() {
+        return customer;
+    }
+    
+    public void printAllData() {
+        
+        final Object[][] table = new String[25][];
+        
+        table[0] = new String[] { "city", "review_count", "rating", "name", "full_address", "type", "categories/0", "categories/1", "Working days", "working hours", "max_reservations" };
+        
+        for (int i=0;i<this.shopList.size();i++) {
+            Shop shop = this.shopList.get(i);
+            table[i+1] = new String[] { shop.getCity(), shop.getReviewCount()+"", shop.getRating()+"", shop.getName(), shop.getFullAdress(), shop.getType(), shop.getCategories0(), shop.getCategories1(), shop.getWorkingDays()+"", shop.getWorkingHour(), shop.getMaxReservations()+"" };
+        }
+
+        for (final Object[] row : table) {
+            System.out.format("%30s\t%15s\t%15s\t%25s\t%80s\t%10s\t%30s\t%25s\t%20s\t%15s\t%20s\t\n", row);
+        }
+    }
+    
+    public int choose() throws IOException {
+        int result = 0;
+        do { 
+            System.out.println("\n\nChoose one of the follow (1 or 2,etc.)");
+            System.out.println("1)Choose a city");
+            System.out.println("2)See all data");
+            System.out.println("3)Exit");
+            try {
+                result = Integer.parseInt(br.readLine());
+            }catch(NumberFormatException ex) {
+                System.err.println("Invalid Input!");
+                result = -1;
+            }
+        }while ( (result < 1) || ( result > 3) );
+        
+        return result;
+    }
+    
+    
 }

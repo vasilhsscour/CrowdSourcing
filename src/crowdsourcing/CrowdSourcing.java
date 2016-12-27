@@ -25,7 +25,7 @@ public class CrowdSourcing {
     public static void main(String[] args) throws IOException {
         
 //        initial values
-        int turns;
+        int turns = 0;
         InitialShop init = new InitialShop();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Set<String> cityList = new HashSet<>();
@@ -36,15 +36,52 @@ public class CrowdSourcing {
         
         Implementation impl = new Implementation( shopList );
         
-        impl.initCityList();
-
-        impl.askForCity();
-
-        impl.askForCategory();
-       
-        impl.askForShop();
-
-        impl.askForResOrRev();
+        int result = 0;
         
+        
+        do {
+            result = impl.choose();
+            if ( result == 1) {
+                impl.askForCity();
+                impl.askForCategory();
+                impl.askForShop();
+
+                String resOrRev = impl.askForResOrRev();
+                Shop shop = impl.getCustomer().getShop();
+
+                if ( resOrRev.equals( "Reservation" ) ) {
+
+                    impl.askForDay();
+                    System.out.println("\nThe working hours is : " + shop.getWorkingHour() + "\nThe  max reservation is : "+ shop.getMaxReservations());
+
+                    if (shop.getMaxReservations() != 0) {
+                        impl.askForName();
+                        impl.askForNumber();
+                        System.out.println("last max reservation  " + shop.getMaxReservations());
+                        shop.setMaxReservations(shop.getMaxReservations() -1);
+                        System.out.println("new max reservation  " + shop.getMaxReservations());
+                        impl.getCustomer().setShop(shop);
+                        impl.modifyShop();
+                    }
+                    else {
+                        System.err.println("\n\nNo available reservation for that day!\n");
+                        impl.askForCity();
+                    }
+
+                }
+                else {
+                    impl.askForName();
+                    impl.askForReview();
+                    impl.informRev( shop );
+                    impl.modifyShop();
+                }
+            }
+            else if (result == 2) {
+                impl.printAllData();
+            }
+            else {
+                System.out.println("Bye Bye!");
+            }
+        } while (result != 3);
     }
 }
